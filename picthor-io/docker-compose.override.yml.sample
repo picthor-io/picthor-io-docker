@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  database:
+    environment:
+       POSTGRES_USER: picthor
+       POSTGRES_PASSWORD: picthor
+       POSTGRES_DB: picthor
+    ports:
+       - "5436:5432"
+    volumes:
+      - [/local/path/to/where/you/want/your/db/data]:/var/lib/postgresql/data
+
+  picthorio:
+    ports:
+      - "5001:5000"
+    environment:
+      PICTHOR_POSTGRES_JDBC_URL: jdbc:postgresql://database:5432/picthor
+      PICTHOR_POSTGRES_USERNAME: picthor
+      PICTHOR_POSTGRES_PASSWORD: picthor
+      PICTHOR_HIKARI_POOL_SIZE: 20
+      PICTHOR_THREADS_NUM: 2
+      PICTHOR_SITE_URL: http://localhost:5000
+      PICTHOR_API_HOST: http://localhost:5000
+    volumes:
+      - [/local/path/to/a/photos/directory]:/root/picthor-root-1
+      - [/local/path/to/picthore/cache/directory]:/root/pichtor-cache
