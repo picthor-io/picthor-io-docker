@@ -12,7 +12,7 @@ RUN reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 ## base builder
 FROM base as builder-base
-RUN pacman -S --noconfirm git fish openssh zip unzip gradle nodejs-lts-gallium npm
+RUN pacman -S --noconfirm git fish openssh zip unzip gradle nodejs-lts-gallium npm exiftool
 RUN mkdir /root/.ssh
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
