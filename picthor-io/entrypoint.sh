@@ -1,6 +1,6 @@
 #!/bin/sh
+export PICTHOR_UI_STATIC_FILES_DIR=/root/picthor-io-ui-dist
 : "${PICTHOR_CACHE_DIR?PICTHOR_CACHE_DIR env var is required}"
-: "${PICTHOR_UI_STATIC_FILES_DIR?PICTHOR_UI_STATIC_FILES_DIR env var is required}"
 : "${PICTHOR_SITE_URL?PICTHOR_SITE_URL env var is required}"
 : "${PICTHOR_API_HOST?PICTHOR_API_HOST env var is required}"
 mkdir $PICTHOR_CACHE_DIR
