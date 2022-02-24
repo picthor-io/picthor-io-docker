@@ -40,12 +40,11 @@ WORKDIR /root/picthor-io-server
 RUN JAVA_HOME=/usr/lib/jvm/default-runtime gradle bootJar --stacktrace
 
 ## app image
-FROM picthorio/imagemagick-ffmpeg-exiftool:latest
-RUN pacman --noconfirm -Sy
-RUN pacman-key --init
-RUN pacman -S --noconfirm archlinux-keyring
-RUN yay -S --noconfirm xxhash ffmpeg jre-openjdk perl-image-exiftool
-RUN pacman -Scc --noconfirm
+FROM picthorio/arch-imagemagick-full:latest
+
+RUN pacman --noconfirm -Sy xxhash ffmpeg jre-openjdk perl-image-exiftool && \
+    pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
+    rm -rf /build /home/aur /var/cache/* /var/log/* /tmp/*
 
 ARG RELEASE
 LABEL \
